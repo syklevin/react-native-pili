@@ -56,6 +56,7 @@ import java.net.InetAddress;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Map;
+import java.util.TimeZone;
 
 import javax.annotation.Nullable;
 
@@ -502,14 +503,41 @@ public class PiliStreamingViewManager extends SimpleViewManager<AspectFrameLayou
     }
 
     private DnsManager getMyDnsManager() {
-        IResolver r0 = new DnspodFree();
-        IResolver r1 = AndroidDnsServer.defaultResolver();
-        IResolver r2 = null;
-        try {
-            r2 = new Resolver(InetAddress.getByName("119.29.29.29"));
-        } catch (IOException ex) {
-            ex.printStackTrace();
+        DnsManager dns;
+        if(needHttpDns()){
+            IResolver r0 = new DnspodFree();
+            IResolver r1 = AndroidDnsServer.defaultResolver();
+            IResolver r2 = null;
+            try {
+                r2 = new Resolver(InetAddress.getByName("119.29.29.29")); //qiniu
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+            dns = new DnsManager(NetworkInfo.normal, new IResolver[]{r0, r1, r2});
         }
-        return new DnsManager(NetworkInfo.normal, new IResolver[]{r0, r1, r2});
+        else{
+            IResolver r0 = AndroidDnsServer.defaultResolver();
+            IResolver r1 = null;
+            try {
+                r1 = new Resolver(InetAddress.getByName("8.8.8.8")); //google dns
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+            dns = new DnsManager(NetworkInfo.normal, new IResolver[]{r0, r1});
+        }
+
+        return dns;
+    }
+
+    public static boolean needHttpDns() {
+        try {
+            TimeZone zone = TimeZone.getDefault();
+            String id = zone.getID();
+            return ("Asia/Shanghai".equals(id) || "Asia/Chongqing".equals(id) ||
+                    "Asia/Harbin".equals(id) || "Asia/Urumqi".equals(id));
+
+        } catch (Exception e) {
+            return false;
+        }
     }
 }
