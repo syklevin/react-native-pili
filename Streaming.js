@@ -1,14 +1,9 @@
 /**
  * Created by buhe on 16/4/29.
  */
-import React, {
-    Component,
-    PropTypes
-} from 'react';
-import {
-    requireNativeComponent,
-    View,
-} from 'react-native';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
+import {requireNativeComponent, ViewPropTypes} from 'react-native';
 
 import StreamingConst  from './StreamingConst';
 
@@ -93,7 +88,7 @@ Streaming.propTypes = {
   onShutdown: PropTypes.func,
   onIOError: PropTypes.func,
   onDisconnected: PropTypes.func,
-  ...View.propTypes,
+  ...ViewPropTypes,
 }
 
 const RCTStreaming = requireNativeComponent('RCTStreaming', Streaming);

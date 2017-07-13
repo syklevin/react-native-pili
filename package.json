@@ -19,14 +19,21 @@
     "Stream",
     "Cloud"
   ],
-  "author": "buhe",
+  "author": "buhe,syklevin",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/buhe/react-native-pili/issues"
+    "url": "https://github.com/syklevin/react-native-pili/issues"
   },
-  "homepage": "https://github.com/buhe/react-native-pili#readme",
+  "homepage": "https://github.com/syklevin/react-native-pili#readme",
   "devDependencies": {
-    "react": "^0.14.8",
-    "react-native": "^0.24.1"
+    "react": "^16.0.0-alpha.12",
+    "react-native": "^0.46.2"
+  },
+  "peerDependencies": {
+    "react": "^16.0.0-alpha.12",
+    "react-native": "^0.46.2"
+  },
+  "dependencies": {
+    "prop-types": "^15.5.10"
   }
 }

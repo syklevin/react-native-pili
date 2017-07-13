@@ -1,14 +1,9 @@
 /**
  * Created by buhe on 16/5/4.
  */
-import React, {
-    Component,
-    PropTypes
-} from 'react';
-import {
-    requireNativeComponent,
-    View,
-} from 'react-native';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
+import {requireNativeComponent, ViewPropTypes} from 'react-native';
 
 class Player extends Component {
 
@@ -75,7 +70,7 @@ Player.propTypes = {
   onShutdown: PropTypes.func,
   onPlayerError: PropTypes.func,
   onPlaying: PropTypes.func,
-  ...View.propTypes,
+  ...ViewPropTypes,
 }
 
 const RCTPlayer = requireNativeComponent('RCTPlayer', Player);

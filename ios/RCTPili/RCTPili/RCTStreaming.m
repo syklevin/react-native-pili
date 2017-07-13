@@ -7,9 +7,9 @@
 //
 
 #import "RCTStreaming.h"
-#import "RCTBridgeModule.h"
-#import "UIView+React.h"
-#import "RCTEventDispatcher.h"
+#import <React/RCTBridgeModule.h>
+#import <React/UIView+React.h>
+#import <React/RCTEventDispatcher.h>
 
 
 @implementation RCTStreaming{
